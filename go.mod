@@ -1,4 +1,4 @@
-module github.com/costela/wesher
+module github.com/USA-RedDragon/wesher
 
 require (
 	github.com/armon/go-metrics v0.3.3 // indirect

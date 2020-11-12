@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"net"
 
-	"github.com/costela/wesher/cluster"
+	"github.com/USA-RedDragon/wesher/cluster"
 	"github.com/hashicorp/go-sockaddr"
 	"github.com/mikioh/ipaddr"
 	"github.com/pkg/errors"

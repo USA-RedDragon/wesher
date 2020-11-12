@@ -1,4 +1,4 @@
-package main // import "github.com/costela/wesher"
+package main // import "github.com/USA-RedDragon/wesher"
 
 import (
 	"fmt"
@@ -8,11 +8,11 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/USA-RedDragon/wesher/cluster"
+	"github.com/USA-RedDragon/wesher/common"
+	"github.com/USA-RedDragon/wesher/etchosts"
+	"github.com/USA-RedDragon/wesher/wg"
 	"github.com/cenkalti/backoff"
-	"github.com/costela/wesher/cluster"
-	"github.com/costela/wesher/common"
-	"github.com/costela/wesher/etchosts"
-	"github.com/costela/wesher/wg"
 	"github.com/sirupsen/logrus"
 )
 

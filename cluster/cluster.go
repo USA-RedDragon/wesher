@@ -7,7 +7,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/costela/wesher/common"
+	"github.com/USA-RedDragon/wesher/common"
 	"github.com/hashicorp/memberlist"
 	"github.com/mattn/go-isatty"
 	"github.com/pkg/errors"

@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/costela/wesher/common"
+	"github.com/USA-RedDragon/wesher/common"
 	"github.com/pkg/errors"
 	"github.com/vishvananda/netlink"
 	"golang.zx2c4.com/wireguard/wgctrl"

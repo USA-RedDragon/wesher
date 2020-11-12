@@ -7,7 +7,7 @@ import (
 	"os"
 	"path"
 
-	"github.com/costela/wesher/common"
+	"github.com/USA-RedDragon/wesher/common"
 	"github.com/sirupsen/logrus"
 )
 
