@@ -39,7 +39,12 @@ func main() {
 	if err != nil {
 		logrus.WithError(err).Fatal("could not create cluster")
 	}
-	wgstate, localNode, err := wg.New(config.Interface, config.WireguardPort, (*net.IPNet)(config.OverlayNet), cluster.LocalName)
+
+	keepaliveDuration, err := time.ParseDuration(config.KeepaliveInterval)
+	if err != nil {
+		logrus.WithError(err).Fatal("could not parse time duration for keepalive")
+	}
+	wgstate, localNode, err := wg.New(config.Interface, config.WireguardPort, (*net.IPNet)(config.OverlayNet), cluster.LocalName, &keepaliveDuration)
 	if err != nil {
 		logrus.WithError(err).Fatal("could not instantiate wireguard controller")
 	}

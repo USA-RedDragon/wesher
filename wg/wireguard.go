@@ -4,6 +4,7 @@ import (
 	"hash/fnv"
 	"net"
 	"os"
+	"time"
 
 	"github.com/costela/wesher/common"
 	"github.com/pkg/errors"
@@ -14,18 +15,19 @@ import (
 
 // State holds the configured state of a Wesher Wireguard interface
 type State struct {
-	iface       string
-	client      *wgctrl.Client
-	OverlayAddr net.IPNet
-	Port        int
-	PrivKey     wgtypes.Key
-	PubKey      wgtypes.Key
+	iface             string
+	client            *wgctrl.Client
+	OverlayAddr       net.IPNet
+	Port              int
+	PrivKey           wgtypes.Key
+	PubKey            wgtypes.Key
+	KeepaliveInterval *time.Duration
 }
 
 // New creates a new Wesher Wireguard state
 // The Wireguard keys are generated for every new interface
 // The interface must later be setup using SetUpInterface
-func New(iface string, port int, ipnet *net.IPNet, name string) (*State, *common.Node, error) {
+func New(iface string, port int, ipnet *net.IPNet, name string, keepaliveInterval *time.Duration) (*State, *common.Node, error) {
 	client, err := wgctrl.New()
 	if err != nil {
 		return nil, nil, errors.Wrap(err, "could not instantiate wireguard client")
@@ -38,11 +40,12 @@ func New(iface string, port int, ipnet *net.IPNet, name string) (*State, *common
 	pubKey := privKey.PublicKey()
 
 	state := State{
-		iface:   iface,
-		client:  client,
-		Port:    port,
-		PrivKey: privKey,
-		PubKey:  pubKey,
+		iface:             iface,
+		client:            client,
+		Port:              port,
+		PrivKey:           privKey,
+		PubKey:            pubKey,
+		KeepaliveInterval: keepaliveInterval,
 	}
 	state.assignOverlayAddr(ipnet, name)
 
@@ -156,6 +159,7 @@ func (s *State) nodesToPeerConfigs(nodes []common.Node) ([]wgtypes.PeerConfig, e
 			AllowedIPs: []net.IPNet{
 				node.OverlayAddr,
 			},
+			PersistentKeepaliveInterval: s.KeepaliveInterval,
 		}
 	}
 	return peerCfgs, nil

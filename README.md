@@ -145,6 +145,7 @@ All options can be passed either as command-line flags or environment variables:
 | `--interface DEV` | WESHER_INTERFACE | name of the wireguard interface to create and manage | `wgoverlay` |
 | `--no-etc-hosts` | WESHER_NO_ETC_HOSTS | whether to skip writing hosts entries for each node in mesh | `false` |
 | `--log-level LEVEL` | WESHER_LOG_LEVEL | set the verbosity (one of debug/info/warn/error) | `warn` |
+| `--keepalive-interval INTERVAL` | WESHER_KEEPALIVE_INTERVAL | interval for which to send keepalive packets | `30s` |
 
 ## Running multiple clusters
 
